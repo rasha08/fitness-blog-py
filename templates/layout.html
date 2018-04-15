@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" sizes="any" href="http://res.cloudinary.com/dgq2ohvtq/image/upload/v1496691641/logo_vuihpz.png">
+    <link href="https://fonts.googleapis.com/css?family=Merienda" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {% block metatags %}{% endblock %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <meta name="robots" content="index, follow">
+  </head>
+  <body>
+    <div id="app" class="old">
+        <div class="app">
+            <div class="navbar-fixed col s12">
+                <div class="row nav-wrapper">
+                    <div class="heading row">
+                        <ul class="left hide-on-med-and-up col s2 center-align">
+                            <button class="btn btn-floating btn-large go-down">
+                                <i class="material-icons">menu</i>
+                            </button>
+                        </ul>
+                        <div class="col l5 m6 s10 center-align">
+                            <h2>{% block headerFirstTitle %}{% endblock %}</h2>
+                        </div>
+                        <div class="col l1 m1 s1">
+                            <img src="http://res.cloudinary.com/dgq2ohvtq/image/upload/v1496691641/logo_vuihpz.png" alt="Licni trener za zene" class="responsive-img center-align hide-on-med-and-down">
+                        </div>
+                        <div class="col l6 m6 s10 offset-s2 center-align go-up">
+                            <h2>{% block headerSecondTitle %}{% endblock %}</h2>
+                        </div>
+                        <hr class="left hide-on-med-and-up col s12 center-align">
+                    </div>
+                    <div class="row">
+                        <ul class="left hide-on-small-and-down col s12">
+                            <li class="col l2 m2 s12 hide-on-med-and-up">
+                                <a>MENI</a>
+                            </li>
+                            <li class="col l2 m2 s12">
+                                <a href="/">
+                                    <span>POČETNA</span>
+                                </a>
+                            </li>
+                            <li class="col l2 m2 s12">
+                                <a href="/personalni-treninzi-za-zene-novi-sad">
+                                    <span>TRENINZI</span>
+                                </a>
+                            </li>
+                            <li class="col l2 m2 s12">
+                                <a href="/galerija">
+                                    <span>GALERIJA</span>
+                                </a>
+                            </li>
+                            <li class="col l2 m2 s12">
+                                <a href="/fitnes-blog-saveti-za-zene">
+                                    <span>BLOG</span>
+                                </a>
+                            </li>
+                            <li class="col l2 m2 s12">
+                                <a href="/fitnes-kuvar-zdrava-hrana-recepti">
+                                    <span>KUVAR</span>
+                                </a>
+                            </li>
+                            <li class="col l2 m2 s12">
+                                <a href="/kontakt">
+                                    <span>KONTAKT</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <div id="footer">
+        <div class="col s12 center-align"><hr><p>© 2017 Sva prava zadrzava jelenastevanovic.rs</p>
+    </div>
+    <script async="" defer="" type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script async="" defer="" type="text/javascript" src="{{url_for('static', filename='js/materialize.min.js')}}"></script>
+  </body>
+</html>
