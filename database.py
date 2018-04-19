@@ -1,7 +1,12 @@
 import pyrebase
 
+from utils import filterArrayByKey
+
 allBlogPosts = []
 allCookPosts = []
+workoutPosts = []
+healthPosts = []
+foodPosts = []
 
 config = {
   'apiKey': 'AIzaSyC_Mba3-WKoP0XHz-XjCNDf3yc8FIiUa7g',
@@ -18,6 +23,11 @@ auth = firebase.auth()
 storage = firebase.storage()
 
 def getAllPosts():
+	global allBlogPosts
+	allBlogPosts = []
+	global allCookPosts
+	allCookPosts = []
+
 	blogPosts = database.child('blogPosts').get()
 	cookPosts = database.child('cookPosts').get()
 
@@ -27,4 +37,5 @@ def getAllPosts():
 	for recipe in cookPosts.each():
 		allCookPosts.append(recipe.val())
 
-getAllPosts()
+	global workoutPosts
+	workoutPosts = filterArrayByKey(allBlogPosts, 'category', 'vežbanje')

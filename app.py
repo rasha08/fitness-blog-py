@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 
 from seo import getMetaTagsForEntyty
-from database import allBlogPosts, allCookPosts, getAllPosts
+from database import allBlogPosts, allCookPosts, getAllPosts, workoutPosts
 
 app = Flask(__name__)
 
@@ -26,8 +26,8 @@ def showServicesPage():
 @app.route('/fitnes-blog-saveti-za-zene')
 def showBlogPage():
 	data = {
-		'posts': allBlogPosts,
-		'meta': getMetaTagsForEntyty('blog', '/fitnes-blog-saveti-za-zene', allBlogPosts)
+		'posts': workoutPosts,
+		'meta': getMetaTagsForEntyty('blog', '/fitnes-blog-saveti-za-zene', workoutPosts)
 	}
 
 	return render_template('blog.html', data = data)
