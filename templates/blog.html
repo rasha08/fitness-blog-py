@@ -1,23 +1,23 @@
-{% extends "layout.html" %}
-{% block metatags %}
-    <title>{{ data.meta.title }}</title>
-    <meta name="description" content="{{ data.meta.description }}">
-    <meta name="keywords" content="{{ data.meta.keywords }}">
-    <meta property="og:title" content="{{ data.meta.title }}">
-    <meta property="og:type" content="website">
-    <meta property="og:description" content="{{ data.meta.description }}">
-    <meta property="og:site_name" content="{{ data.meta.title }}">
-    <meta property="og:locale" content="sr_RS">
-    <meta property="og:article:author" content="https://www.facebook.com/jelenastevanovic.rs">
-    <meta property="og:url" content="{{ data.meta.url }}">
-    <meta property="og:image" content="{{ data.meta.image }}">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:url" content="{{ data.meta.url }}">
-    <meta name="twitter:title" content="{{ data.meta.title }}">
-    <meta name="twitter:description" content="{{ data.meta.description }}">
-    <meta name="twitter:image" content="{{ data.meta.image }}">
-    <meta name="twitter:site" content="@NS_FitnesTrener"><meta name="twitter:creator" content="@NS_FitnesTrener">
-    <script type="application/ld+json">
+{% extends "layout.html" %} {% block metatags %}
+<title>{{ data.meta.title }}</title>
+<meta name="description" content="{{ data.meta.description }}">
+<meta name="keywords" content="{{ data.meta.keywords }}">
+<meta property="og:title" content="{{ data.meta.title }}">
+<meta property="og:type" content="website">
+<meta property="og:description" content="{{ data.meta.description }}">
+<meta property="og:site_name" content="{{ data.meta.title }}">
+<meta property="og:locale" content="sr_RS">
+<meta property="og:article:author" content="https://www.facebook.com/jelenastevanovic.rs">
+<meta property="og:url" content="{{ data.meta.url }}">
+<meta property="og:image" content="{{ data.meta.image }}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:url" content="{{ data.meta.url }}">
+<meta name="twitter:title" content="{{ data.meta.title }}">
+<meta name="twitter:description" content="{{ data.meta.description }}">
+<meta name="twitter:image" content="{{ data.meta.image }}">
+<meta name="twitter:site" content="@NS_FitnesTrener">
+<meta name="twitter:creator" content="@NS_FitnesTrener">
+<script type="application/ld+json">
         {
           "@context": "http://schema.org",
           "@type": "LocalBusiness",
@@ -49,43 +49,52 @@
           "image": "{{ data.meta.image }}",
           "priceRange" : "$5 - $15",
         }
-    </script>
-{% endblock %}
-{% block headerFirstTitle %} Fitnes Blog {% endblock %}
-{% block headerSecondTitle %} Jelena Stevanovic {% endblock %}
-{% block content %}
-  <div class="component blog">
-    <div class="row">
-      <div class="col s1">
-        <button class="btn waves-effect waves-light">Vežbanje</button>
-        <button class="btn waves-effect waves-light">Zdravlje</button>
-        <button class="btn waves-effect waves-light">Hrana</button>
-      </div>
-      <div class="closed">
-        <div class="workout-posts-menu">
-          <div>
-            <a href="/fitnes-blog-saveti-za-zene/fitnes-tekst/-L8HC3xWM1gTZTEqKzvU/vežbanje/vežbanje-tokom-zimskih-meseci">
-              <span class="flow-text">Vežbanje tokom zimskih meseci</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="col s11">
-        <h1 class="hidden">Fitness Blog Za Žene - Personalni Trener Jelena Stevanović</h1>
-        <div class="row center-align">
-          {% for post in data.posts %}
-          <a class="sc-bdVaJa bVcmIn" href="/{{ post.category }}/{{post.title.lower()}}">
-            <div class="col l3 m6 s12 post-card"><h2>{{ post.title }}</h2>
-              <div class="post-card-image">
-                <img src="{{ post.imgUrl }}" alt="fitnes trener za zene novi sad" class="responsive-img">
-              </div>
-              <p class="folw-text">{{ post.description }}</p>
-              <p class="blog-post-card-date">{{ post.date }}</p>
-            </div>
+    </script> {% endblock %} {% block headerFirstTitle %} Fitnes Blog i Saveti za Žene {% endblock %} {% block headerSecondTitle %} Lični
+Trener Jelena Stevanovic {% endblock %} {% block content %}
+<div class="component blog">
+  <div class="row">
+    <div class="col s1">
+      {% for category in data['sidebar'] %}
+      <button class="btn waves-effect waves-light">{{data['sidebar'][category]['title']}}</button>
+      {% endfor %}
+    </div>
+    {% for category in data['sidebar'] %}
+    <div class="closed">
+      <div class="workout-posts-menu">
+        <div>
+          {% for post in data['sidebar'][category]['posts'] %}
+          <a href="{{ data['blogCategories'][category].link }}/{{data.helpers.kebabCase(post.title)}}">
+            <span class="flow-text">{{post.title}}</span>
           </a>
           {% endfor %}
         </div>
       </div>
     </div>
+    {% endfor %}
+    <div class="col s11">
+      <h1 class="hidden">Fitness Blog Za Žene - Personalni Trener Jelena Stevanović</h1>
+      {% for category in data['blogCategories'] %}
+      <div class="row center-align blog-home-category">
+        <div class="row col m10 category-title">
+          <h2>
+            <a href="{{ data['blogCategories'][category].link }}">{{ data['blogCategories'][category].title }}</a>
+          </h2>
+        </div>
+        {% for post in data['blogCategories'][category].posts %}
+        <a class="sc-bdVaJa bVcmIn" href="{{ data['blogCategories'][category].link }}/{{data.helpers.kebabCase(post.title)}}">
+          <div class="col l3 m6 s12 post-card">
+            <h2>{{ post.title }}</h2>
+            <div class="post-card-image">
+              <img src="{{ post.imgUrl }}" alt="fitnes trener za zene novi sad" class="responsive-img">
+            </div>
+            <p class="folw-text post-card-description">{{ post.description }}</p>
+            <p class="blog-post-card-date">{{ post.date }}</p>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
   </div>
+</div>
 {% endblock %}
