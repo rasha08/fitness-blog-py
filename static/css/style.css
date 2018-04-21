@@ -6,7 +6,32 @@ body {
   color: snow;
   background-color: #000;
   width: 100vw;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+  background-color: black;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track, ::-webkit-scrollbar-track:horizontal {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb, ::-webkit-scrollbar-thumb:horizontal {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.7);
 }
 
 .preloader-wrapper {
@@ -113,6 +138,11 @@ h1,
 }
 .personal:hover {
   box-shadow: 2px 3px 35px snow;
+}
+
+.service-one h1 {
+  margin-top: -50px;
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .service-one {
@@ -476,7 +506,8 @@ a:visited {
 .workout-posts-menu {
   box-shadow: 2px 2px 15px goldenrod;
   border: 2px solid snow;
-  width: 280px;
+  min-width: 280px;
+  width: 40vw;
   position: absolute;
   z-index: 999999;
   background-color: rgba(0, 0, 0, 0.75);
@@ -495,12 +526,18 @@ a:visited {
   -o-transition-duration: 500ms;
   -webkit-transition-duration: 500ms;
   text-align: center;
+  overflow-x: hidden;
+  height: 70vh;
+  overflow-y: auto;
 }
-.workout-posts-menu .flow-text {
-  background-color: rgba(255, 255, 255, 0.4);
-  width: 270px;
+
+.workout-posts-menu .menu-link{
+  min-width: 280px;
+  padding: 2%;
+  width: 40vw;
   margin-left: 2.5px;
   border-bottom: 1px solid goldenrod;
+  min-height: 60px;
   transition-property: background-color;
   -moz-transition-property: background-color;
   -o-transition-property: background-color;
@@ -514,8 +551,8 @@ a:visited {
   -o-transition-duration: 500ms;
   -webkit-transition-duration: 500ms;
 }
-.workout-posts-menu .flow-text:hover {
-  background-color: rgba(0, 0, 0, 0.55);
+.workout-posts-menu .menu-link:hover {
+  background-color: rgba(0, 0, 0, 0.85);
   cursor: pointer;
 }
 .closed .workout-posts-menu {
@@ -768,6 +805,47 @@ a:visited {
 .blog-home-category {
   width: 97vw !important;
   text-align: center !important;
+}
+
+.collapsible-header, .collapsible-header:focus {
+  background-color: transparent !important;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 1px 2px 1px 3px rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid goldenrod;
+  font-size: calc(18px + 0.3vw);
+  user-select: none;
+  outline:0
+}
+.blog-post-img img{
+  max-width: 75vw;
+}
+
+.collapsible-body {
+  -moz-transition-property: color, text-decoration;
+  -o-transition-property: color, text-decoration;
+  -webkit-transition-property: color, text-decoration;
+  transition-property: color, text-decoration;
+  transition-timing-function: ease-in;
+  -moz-transition-timing-function: ease-in;
+  -o-transition-timing-function: ease-in;
+  -webkit-transition-timing-function: ease-in;
+  transition-duration: 500ms;
+  -moz-transition-duration: 500ms;
+  -o-transition-duration: 500ms;
+  -webkit-transition-duration: 500ms;
+}
+
+.collapsible-body:hover {
+  color: goldenrod !important;
+  text-decoration: underline !important;
+}
+
+.mutted {
+  color: darkgrey;
+  text-align: right;
+  margin-left: 3%;
+  font-size: calc(9px + 0.4vw);
 }
 
 /* MEDIA QUERIES*/

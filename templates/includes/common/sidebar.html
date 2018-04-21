@@ -1,0 +1,52 @@
+<div class="col s1">
+  {% for category in data['sidebar'] %}
+  <button  class="btn waves-effect waves-light" onclick="toggleMenu({{data['sidebar'][category]['title'].lower()}}['id'])">{{data['sidebar'][category]['title']}}</button>
+  {% endfor %}
+</div>
+{% for category in data['sidebar'] %}
+<div class="closed" id="{{data['sidebar'][category]['title'].lower()}}">
+  <div class="workout-posts-menu">
+
+      {% for post in data['sidebar'][category]['posts'] %}
+      <div class="menu-link">
+        <a href="{{ data.helpers.createPostLink(data, post, category, True) }}">
+          <span class="flow-text">{{post.title}}</span>
+        </a>
+      </div>
+      {% endfor %}
+
+  </div>
+</div>
+{% endfor %}
+<script>
+  let elements = [];
+  function toggleMenu(elementId) {
+    let element = document.getElementById(elementId)
+    closeAlreadyOpenedMenu(element)
+    
+    if (element.classList.contains('closed')) {
+      openMenuForCategory(element)
+      elements.push(element)
+    } else {
+      closeMenuForCategory(element)
+      elements = []
+    }
+  }
+
+  function openMenuForCategory(element) {
+    element.classList.remove('closed')
+    element.classList.add('open')
+  }
+
+  function closeMenuForCategory(element) {
+    element.classList.remove('open')
+    element.classList.add('closed')
+  }
+
+  function closeAlreadyOpenedMenu(element) {
+    if (elements.length && !elements.includes(element)) {
+      closeMenuForCategory(elements.pop())
+      elements = []
+    }
+  }
+  </script>

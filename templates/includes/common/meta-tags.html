@@ -1,0 +1,51 @@
+<title>{{ data.meta.title }}</title>
+<meta name="description" content="{{ data.meta.description }}">
+<meta name="keywords" content="{{ data.meta.keywords }}">
+<meta property="og:title" content="{{ data.meta.title }}">
+<meta property="og:type" content="website">
+<meta property="og:description" content="{{ data.meta.description }}">
+<meta property="og:site_name" content="{{ data.meta.title }}">
+<meta property="og:locale" content="sr_RS">
+<meta property="og:article:author" content="https://www.facebook.com/jelenastevanovic.rs">
+<meta property="og:url" content="{{ data.meta.url }}">
+<meta property="og:image" content="{{ data.meta.image }}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:url" content="{{ data.meta.url }}">
+<meta name="twitter:title" content="{{ data.meta.title }}">
+<meta name="twitter:description" content="{{ data.meta.description }}">
+<meta name="twitter:image" content="{{ data.meta.image }}">
+<meta name="twitter:site" content="@NS_FitnesTrener">
+<meta name="twitter:creator" content="@NS_FitnesTrener">
+<script type="application/ld+json">
+        {
+          "@context": "http://schema.org",
+          "@type": "LocalBusiness",
+          "url": "{{ data.meta.url }}",
+          "logo": "http://res.cloudinary.com/dgq2ohvtq/image/upload/v1496691641/logo_vuihpz.png",
+          "hasMap": "https://www.google.rs/maps/place/MissFit/@45.2474953,19.7985349,14z/data=!4m8!1m2!2m1!1steretana+missfit!3m4!1s0x475b1022f83f5dfb:0xf10128ef0eedf02a!8m2!3d45.238835!4d19.827393",
+          "email": "mailto:stevanovich.jelena(at)mail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Novi Sad",
+            "addressRegion": "Srbija",
+            "postalCode":"21000",
+            "streetAddress": "8 Banovic Strahinje"
+          },
+          "description": "{{ data.meta.description }}",
+          "name": "{{ data.meta.title }}",
+          "telephone": "+381628260506",
+          "openingHours": "Mo,Tu,We,Th,Fr 06:00-23:00",
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "44.8113172",
+            "longitude": "20.4630735,17z"
+          },
+          "sameAs" : [
+            "https://www.facebook.com/pg/jelenastevanovic.rs",
+            "https://twitter.com/NS_FitnesTrener",
+            "http://personalni-trener.blogspot.rs"
+          ],
+          "image": "{{ data.meta.image }}",
+          "priceRange" : "$5 - $15",
+        }
+    </script>

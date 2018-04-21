@@ -1,0 +1,15 @@
+
+<div class="blog-post-body">
+  <div class="blog-post-title">
+    <h1>{{ data['blogPost']['title'] }}</h1>
+  </div>
+  <p class="flow-text">
+    {{ data['blogPost']['text'][0:data['blogPost']['text'].find('.') + 1]}}
+  </p>
+  <div class="blog-post-img">
+    <img data-src="{{ data['blogPost']['imgUrl']}}" src="{{url_for('static', filename='images/loader.gif')}}" alt="personalni trener za zene novi sad" class="img responsive-img">
+  </div>
+  <p class="flow-text"> 
+      {{ data['blogPost']['text'][data['blogPost']['text'].find('.') - 1:] }}
+  </p>
+</div>

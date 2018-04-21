@@ -1,0 +1,13 @@
+<h1>Fitnes Blog Za Žene - Personalni Trener Jelena Stevanović</h1>
+{% for category in data['blogCategories'] %}
+<div class="row center-align blog-home-category">
+  <div class="row col m10 category-title">
+    <h2>
+      <a href="{{ data['blogCategories'][category].link }}">{{ data['blogCategories'][category].title }} <span class="mutted">(otvori kategoriju)</span></a>
+    </h2>
+  </div>
+  {% for post in data['blogCategories'][category].posts %}
+    {% include 'includes/blog/blog-post-card.html' %}
+  {% endfor %}
+</div>
+{% endfor %}

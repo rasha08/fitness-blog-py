@@ -18,6 +18,10 @@ def getMetaTagsForEntyty(entity, url = '', posts = None, post = None):
 		return getBlogPageMetaTags(url, posts)
 	elif entity == 'cook':
 		return getCookPageMetaTags(url, posts)
+	elif entity == 'blogCategory':
+  		return getBlogCategoryPageMetaTags(url, posts)
+	elif entity == 'cookCategory':
+  		return getCookCategoryPageMetaTags(url, posts)
 	elif entity == 'blogPost':
 		return getBlogPostPageMetaTags(url, post)
 	elif entity == 'cookPost':
@@ -52,8 +56,8 @@ def getGaleryPageMetaTags(url):
 
 def getBlogPageMetaTags(url, posts):
 	return {
-		'title': 'Fitness Blog Za Zene - Personalni Trener Jelena Stevanovic - Licni Trener Novi Sad',
-		'description': 'Najnoviji tesktovi i odgovori na pitanja: kako napredovati u terertani, kako brzo smrsati, dijete za ravan stomak, lako do trbusnjaka, zatezanje zadnjicem, kako se resiti celulita.',
+		'title': 'Fitnes Blog Za Zene - Personalni Trener Jelena Stevanovic - Licni Trener Novi Sad',
+		'description': 'Najnoviji tesktovi i odgovori na pitanja: kako napredovati u teretani, kako brzo smrsati, dijete za ravan stomak, lako do trbusnjaka, zatezanje zadnjice, kako se resiti celulita.',
 		'url': baseUrl + url,
 		'image': imageUrl,
 		'keywords': generateKewordsForPage(posts)
@@ -61,11 +65,29 @@ def getBlogPageMetaTags(url, posts):
 
 def getCookPageMetaTags(url, posts):
 	return {
-		'title': 'Fitness Kuvar Za Zene - Personalni Trener Jelena Stevanovic',
+		'title': 'Fitnes Kuvar Za Zene - Personalni Trener Jelena Stevanovic',
 		'description': 'Najnoviji recepti i saveti kako da budete vitki, imate savrsenu liniju i kako da ishranom dovedete svoje telo do savrsene forme',
 		'url': baseUrl + url,
 		'image': imageUrl,
 		'keywords': generateKewordsForPage(posts)
+	}
+
+def getBlogCategoryPageMetaTags(url, category):
+  return {
+		'title': category['title'],
+		'description': category['description'],
+		'url': baseUrl + url,
+		'image': imageUrl,
+		'keywords': generateKewordsForPage(category['posts'])
+	}
+
+def getCookCategoryPageMetaTags(url, post):
+  return {
+		'title': 'Fitness Blog Za Zene - Personalni Trener Jelena Stevanovic - Licni Trener Novi Sad',
+		'description': 'Najnoviji tesktovi i odgovori na pitanja: kako napredovati u terertani, kako brzo smrsati, dijete za ravan stomak, lako do trbusnjaka, zatezanje zadnjicem, kako se resiti celulita.',
+		'url': baseUrl + url,
+		'image': imageUrl,
+		'keywords': generateKewordsForPage(post)
 	}
 
 def getBlogPostPageMetaTags(url, post):
@@ -73,7 +95,7 @@ def getBlogPostPageMetaTags(url, post):
 		'title': 'Fitness Blog Za Zene - Personalni Trener Jelena Stevanovic - Licni Trener Novi Sad',
 		'description': 'Najnoviji tesktovi i odgovori na pitanja: kako napredovati u terertani, kako brzo smrsati, dijete za ravan stomak, lako do trbusnjaka, zatezanje zadnjicem, kako se resiti celulita.',
 		'url': baseUrl + url,
-		'image': imageUrl,
+		'image': post['imgUrl'],
 		'keywords': generateKewordsForPost(post)
 	}
 
@@ -90,16 +112,16 @@ def getCookPostPageMetaTags(url, post):
 def generateKewordsForPage(posts) :
  	return reduce(
  		(lambda prev, curr: prev + ',' + curr),
-    	filter(
-    		lambda word: prepareWordForKeywords(word),
+    filter(
+    	lambda word: prepareWordForKeywords(word),
 			list(
 				map(
 					lambda post: prepareWordForKeywords(post['title'].lower()),
 					posts
 				)
 			)
-      	)
     )
+  )
 
 def generateKewordsForPost(post):
     return reduce(

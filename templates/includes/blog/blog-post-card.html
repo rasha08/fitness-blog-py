@@ -1,0 +1,10 @@
+<a class="sc-bdVaJa bVcmIn" href="{{  data.helpers.createPostLink(data, post, category) }}">
+  <div class="col l3 m6 s12 post-card">
+    <h2>{{ post.title }}</h2>
+    <div class="post-card-image">
+      <img data-src="{{ post.imgUrl }}" src="{{url_for('static', filename='images/loader.gif')}}" alt="fitnes trener za zene novi sad" class="img responsive-img">
+    </div>
+    <p class="folw-text post-card-description">{{ post.description }}</p>
+    <p class="blog-post-card-date">{{ post.date }}</p>
+  </div>
+</a>

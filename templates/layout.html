@@ -1,12 +1,13 @@
 <!doctype html>
-<html>
+<html lang="sr-RS">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" sizes="any" href="http://res.cloudinary.com/dgq2ohvtq/image/upload/v1496691641/logo_vuihpz.png">
     <link href="https://fonts.googleapis.com/css?family=Merienda" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> {% block metatags %}{% endblock %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {% block metatags %}{% endblock %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
     <meta name="robots" content="index, follow">
@@ -83,8 +84,15 @@
             <hr>
             <p>© 2017 Sva prava zadrzava jelenastevanovic.rs</p>
         </div>
-        <script async type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script async src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    </div>    
 </body>
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<script>
+    $( window ).load( function(){
+        $( '.img' ).each( function(){
+        $( this ).attr( 'src', $( this ).attr( 'data-src' ) );
+        });
+    });
+</script>
 </html>
