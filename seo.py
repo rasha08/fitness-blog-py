@@ -1,6 +1,6 @@
-import re
 from  functools import reduce
 
+from utils import prepareWordForKeywords
 # global module variables
 baseUrl = 'http://jelenastevanovic.rs'
 imageUrl = 'http://res.cloudinary.com/dgq2ohvtq/image/upload/v1474474686/2-min_bsksuq.jpg'
@@ -81,13 +81,13 @@ def getBlogCategoryPageMetaTags(url, category):
 		'keywords': generateKewordsForPage(category['posts'])
 	}
 
-def getCookCategoryPageMetaTags(url, post):
+def getCookCategoryPageMetaTags(url, category):
   return {
 		'title': 'Fitness Blog Za Zene - Personalni Trener Jelena Stevanovic - Licni Trener Novi Sad',
 		'description': 'Najnoviji tesktovi i odgovori na pitanja: kako napredovati u terertani, kako brzo smrsati, dijete za ravan stomak, lako do trbusnjaka, zatezanje zadnjicem, kako se resiti celulita.',
 		'url': baseUrl + url,
 		'image': imageUrl,
-		'keywords': generateKewordsForPage(post)
+		'keywords': generateKewordsForPage(category['posts'])
 	}
 
 def getBlogPostPageMetaTags(url, post):
@@ -131,35 +131,40 @@ def generateKewordsForPost(post):
     		(post['title'].lower() + post['description'].lower()).split(' ')
     	)
     )
+		
+def addSeoEntitiesForCategory(baseUrl, category, posts):
+    if category == 'fitnes-treninzi-saveti-i-vezbe':
+        categoryWithSeoEntities = {
+            'title': 'Fitnes Blog Za Žene - Fitness Treninzi, Saveti i Vežbe',
+            'description': 'Fitness treninzi, saveti i vežbe, odgovori na pitanja: kako napredovati u teretani, kako brzo smršati, treninzi za ravan stomak, kako doći do izvajane zadnjice i savršenih nogu'
+        }
+    elif category == 'zdravlje-i-zdrave-navike':
+         categoryWithSeoEntities = {
+            'title': 'Fitnes Blog Za Žene - Zdravlje i Zdrave Navike',
+            'description': 'Zdravlje i zdrave navike, saznajte kako da sačuvate vaše zdravlje, koje zdrave navike vam mogu ojacati imunitet, koje su navike najbolje za vaš organizam'
+        }
+    elif category == 'zdrava-hrana-i-zdrava-ishrana':
+         categoryWithSeoEntities = {
+            'title': 'Fitnes Blog Za Žene - Zdrava Hrana i Zdrava Ishrana',
+            'description': 'Zdrava hrana i zdrava ishrana, saznajte sta je najbolje jesti pre ili posle treninga, koja je najbolja hrana za mršavljenje, kako da dijetom istopite masti'
+        }
+    elif category == 'najbolji-recepti-za-fitnes-dorucak':
+         categoryWithSeoEntities = {
+            'title': 'Fitnes Kuvar Za Žene -Najbolji Recepti Za Vaš Fitnes Doručak',
+            'description': 'Najbolji recepti za vaš fitnes doručak, kako da brzo i lako napravite zdravi obrok za savršen početak dana'
+        }
+    elif category == 'najbolji-recepti-za-fitnes-rucak':
+        categoryWithSeoEntities = {
+            'title': 'Fitnes Kuvar Za Žene -Najbolji Recepti Za Vaš Fitnes Ručak',
+            'description': 'Najbolji recepti za vaš fitnes ručak, kako da brzo i lako napravite zdravi obrok, pun proteina i pružite svome telu negu kakvu zaslužuje'
+        }
+    elif category == 'najbolji-recepti-za-fitnes-veceru':
+        categoryWithSeoEntities = {
+            'title': 'Fitnes Kuvar Za Žene -Najbolji Recepti Za Vašu Fitnes Večeru',
+            'description': 'Najbolji recepti za vašu fitnes večeru, kako da brzo i lako napravite sjajnu i zdravu večeru koja će omogućiti vašem telu odmor koji mu je potreban'
+        }
+		
+    categoryWithSeoEntities['posts'] = posts
+    categoryWithSeoEntities['link'] = baseUrl + '/' + category
 
-def prepareWordForKeywords(word):
-    preparedWord = re.sub(r"/^je$/g", '', word)
-    preparedWord = re.sub(r"/^a$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^koji$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^kao$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^da$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^ili$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^li$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^pa$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^od$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^do$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^kod$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^sa$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^i$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^iz$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^pod$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^po$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^nad$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^za$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^će$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^ce$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^tako$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^kako$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^na$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^ako$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^u$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^sa$/g", '', preparedWord)
-    preparedWord = re.sub(r"/^se$/g", '', preparedWord)
-
-    return re.sub(r"</[&\/\\#,+()$~%.':*?<>{}]/g", '', preparedWord)
-
+    return categoryWithSeoEntities

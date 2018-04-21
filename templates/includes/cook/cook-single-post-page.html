@@ -1,0 +1,17 @@
+<div class="blog-post-body">
+  <div class="blog-post-title">
+    <h1>{{ data['cookPost']['title'] }}</h1>
+  </div>
+  <p class="flow-text">
+    {{ data['cookPost']['description'] }}
+  </p>
+  <div class="row">
+    <div class="blog-post-img col l6 m6 s12">
+      <img data-src="{{ post.imgUrl }}" src="{{url_for('static', filename='images/loader.gif')}}" alt="fitnes trener za zene novi sad" class="responsive-img recipe-img">
+    </div>
+    <div class="blog-post-ingrdediants col offset-1 l5 m5 s12">
+      {% for ingrdediant in data['cookPost']['ingrdediants'] %}
+      <p class="ingrdediant">{{ ingrdediant }}</p>
+    </div>
+  </div>
+</div>

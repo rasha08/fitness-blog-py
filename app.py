@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for
 
 from seo import getMetaTagsForEntyty
-from database import getAllBlogPosts, getBlogHomePagePosts, getAllPosts, getBlogPageSidebar, getBlogCategory, getSingleBlogPost
+from database import getAllBlogPosts, getBlogHomePagePosts, getAllPosts, getBlogPageSidebar, getCategoryPosts, getSingleBlogPost, getAllCookPosts, getCookPageSidebar, getCookPagePosts
 from utils import createPostLink
 
 app = Flask(__name__)
@@ -9,6 +9,7 @@ app = Flask(__name__)
 getAllPosts()
 
 baseBlogUrl = '/fitnes-blog-saveti-za-zene'
+baseCookUrl = '/fitnes-kuvar-zdrava-hrana-recepti'
 
 @app.route('/')
 def showIndexPage():
@@ -41,14 +42,15 @@ def showBlogPage():
 
 @app.route('/fitnes-blog-saveti-za-zene/<category>')
 def showBlogCategoryPage(category):
-    blogCatgegory = getBlogCategory(category)
-    if len(blogCatgegory) == 0:
+    blogCategory = getCategoryPosts(baseBlogUrl, category)
+    print(blogCategory)
+    if blogCategory is None:
         return redirect(url_for('showBlogPage'))
 
     data = {
         'blogCategories': getBlogHomePagePosts(),
-        'blogCategory': blogCatgegory,
-        'meta': getMetaTagsForEntyty('blogCategory', baseBlogUrl + '/' +category, blogCatgegory),
+        'blogCategory': blogCategory,
+        'meta': getMetaTagsForEntyty('blogCategory', baseBlogUrl + '/' + category, blogCategory),
         'sidebar': getBlogPageSidebar(),
         'helpers': {
             'createPostLink': createPostLink
@@ -58,7 +60,7 @@ def showBlogCategoryPage(category):
     return render_template('blog.html', data=data)
 
 @app.route('/fitnes-blog-saveti-za-zene/<category>/<post>')
-def getBlogPost(category, post):
+def showBlogPost(category, post):
     blogPost = getSingleBlogPost(category, post)
     if blogPost is None:
         return redirect(url_for('showBlogCategoryPage', category = category))
@@ -79,6 +81,37 @@ def getBlogPost(category, post):
     }
 
     return render_template('blog.html', data=data)
-    
+
+@app.route('/fitnes-kuvar-zdrava-hrana-recepti')
+def showCookPage():
+    data = {
+        'meta': getMetaTagsForEntyty('cook' ,baseCookUrl, getAllCookPosts()),
+        'cookCategories': getCookPagePosts(),
+        'sidebar': getCookPageSidebar(),
+        'helpers': {
+            'createPostLink': createPostLink
+        }
+    }
+
+    return render_template('cook.html', data=data)    
+
+@app.route('/fitnes-kuvar-zdrava-hrana-recepti/<category>')
+def showCookCategoryPage(category):
+    cookCategory = getCategoryPosts(baseCookUrl, category)
+    if cookCategory is None:
+        return redirect(url_for('showCookPage'))
+
+    data = {
+        'cookCategories': getCookPagePosts(),
+        'cookCategory': cookCategory,
+        'meta': getMetaTagsForEntyty('cookCategory', baseCookUrl + '/' +category, cookCategory),
+        'sidebar': getCookPageSidebar(),
+        'helpers': {
+            'createPostLink': createPostLink
+        }
+    }
+
+    return render_template('cook.html', data=data)
+
 
 app.run()

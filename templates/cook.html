@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block metatags %}
+    {% if data['blogPost'] %}
+          {% include 'includes/blog/meta-tags-blog-post.html' %}
+    {% else %}
+          {% include 'includes/common/meta-tags.html' %}
+    {% endif %}
+{% endblock %} 
+
+{% block headerFirstTitle %} Fitnes Kuvar i Recepti {% endblock %} 
+
+{% block headerSecondTitle %} Lični Trener Jelena Stevanovic {% endblock %} 
+
+{% block content %}
+  <div class="component cook blog">
+    <div class="row">
+      {% include 'includes/common/sidebar.html' %}
+      <div class="col s11" onclick="closeAlreadyOpenedMenu(null)">
+        {% if data['cookCategory'] %}
+          {% include 'includes/cook/cook-category-page.html' %}
+        {% elif data['cookPost'] %}
+          {% include 'includes/cook/cook-single-post-page.html' %}
+        {% else %}
+          {% include 'includes/cook/cook-home-page.html' %}        
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

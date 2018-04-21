@@ -1,0 +1,12 @@
+<a href="{{  data.helpers.createPostLink(data, post, category) }}">
+  <div class="col l5 m5 s11 row recipe-card" data-background="{{ post['imgUrl'] }}">
+    <div class="recipe-card-wrapper">
+      <div class="col m10 s10 levitate">
+        <h1>{{ post['title'] }}</h1>
+      </div>
+      <div class="col s12 levitate">
+        <p class="recipe-description">{{ post['description'] }}</p>
+      </div>
+    </div>
+  </div>
+</a>

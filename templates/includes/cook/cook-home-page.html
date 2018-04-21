@@ -1,0 +1,13 @@
+<h1>Fitnes Kuvar Za Žene - Personalni Trener Jelena Stevanović</h1>
+{% for category in data['cookCategories'] %}
+<div class="row center-align blog-home-category">
+  <div class="row col m10 category-title">
+    <h2>
+      <a href="{{ data['cookCategories'][category].link }}">{{ data['cookCategories'][category].title }} <span class="mutted">(otvori kategoriju)</span></a>
+    </h2>
+  </div>
+  {% for post in data['cookCategories'][category].posts %}
+    {% include 'includes/cook/cook-post-card.html' %}
+  {% endfor %}
+</div>
+{% endfor %}

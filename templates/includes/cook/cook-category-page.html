@@ -1,0 +1,19 @@
+<h1>{{ data['cookCategory']['title'] }}</h1>
+<div class="row center-align blog-home-category">
+  {% for post in data['cookCategory'].posts[:8] %}
+      {% include 'includes/cook/cook-post-card.html' %}
+  {% endfor %}
+</div>
+<ul class="collapsible popout">
+    {% for post in data['cookCategory'].posts[8:] %}
+        <li>
+          <h3 class="collapsible-header">{{post.title}}</h3>
+          <a href="{{ data.helpers.createPostLink(data, post) }}" class="collapsible-body"><span>{{ post.description }}</span></a>
+        </li>
+    {% endfor %}
+</ul>
+<script>  
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+</script>

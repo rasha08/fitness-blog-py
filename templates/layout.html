@@ -91,7 +91,10 @@
 <script>
     $( window ).load( function(){
         $( '.img' ).each( function(){
-        $( this ).attr( 'src', $( this ).attr( 'data-src' ) );
+            $( this ).attr( 'src', $( this ).attr( 'data-src' ) );
+        });
+        $( '.recipe-card' ).each( function(){
+            $( this ).css( 'background-image', `url(${$( this ).attr( 'data-background' )})`);
         });
     });
 </script>
