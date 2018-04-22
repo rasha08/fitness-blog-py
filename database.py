@@ -26,7 +26,7 @@ def getAllPosts():
     global breakfastPosts
     global lunchPosts
     global dinnerPosts
-    
+
 
     allCookPosts = []
     allBlogPosts = []
@@ -112,7 +112,7 @@ def getCategoryPosts(baseUrl, categoryUrl):
         posts = dinnerPosts
     else:
         return None
-    
+
     return addSeoEntitiesForCategory(baseUrl, categoryUrl, posts)
 
 def getSingleBlogPost(categoryUrlSlug, postNameUrlSlug):
@@ -122,8 +122,6 @@ def getSingleBlogPost(categoryUrlSlug, postNameUrlSlug):
         posts = healthPosts
     else:
         posts = foodPosts
-    
-    print(categoryUrlSlug)
 
     return findInArray(
         lambda singlePost: isPostSelected(singlePost, postNameUrlSlug),
@@ -165,3 +163,18 @@ def getCookPageSidebar():
             'posts': dinnerPosts
         }
     }
+
+def getSingleCookPost(categoryUrlSlug, postNameUrlSlug):
+    if categoryUrlSlug == 'najbolji-recepti-za-fitnes-dorucak':
+        posts = breakfastPosts
+    elif categoryUrlSlug == 'najbolji-recepti-za-fitnes-rucak':
+        posts = lunchPosts
+    else:
+        posts = dinnerPosts
+
+    return findInArray(
+        lambda singlePost: isPostSelected(singlePost, postNameUrlSlug),
+        posts
+    )
+
+

@@ -7,11 +7,12 @@
   </p>
   <div class="row">
     <div class="blog-post-img col l6 m6 s12">
-      <img data-src="{{ post.imgUrl }}" src="{{url_for('static', filename='images/loader.gif')}}" alt="fitnes trener za zene novi sad" class="responsive-img recipe-img">
+      <img data-src="{{ data['cookPost']['imgUrl'] }}" src="{{url_for('static', filename='images/loader.gif')}}" alt="fitnes trener za zene novi sad" class="responsive-img recipe-img img">
     </div>
     <div class="blog-post-ingrdediants col offset-1 l5 m5 s12">
-      {% for ingrdediant in data['cookPost']['ingrdediants'] %}
+      {% for ingrdediant in data['cookPost']['ingrediants'] %}
       <p class="ingrdediant">{{ ingrdediant }}</p>
+      {% endfor %}
     </div>
   </div>
 </div>

@@ -23,9 +23,9 @@ def getMetaTagsForEntyty(entity, url = '', posts = None, post = None):
 	elif entity == 'cookCategory':
   		return getCookCategoryPageMetaTags(url, posts)
 	elif entity == 'blogPost':
-		return getBlogPostPageMetaTags(url, post)
+		return getPostPageMetaTags(url, post)
 	elif entity == 'cookPost':
-		return getcookPostPageMetaTags(url, post)
+		return getPostPageMetaTags(url, post)
 
 
 def getHomePageMetaTags(url):
@@ -90,21 +90,12 @@ def getCookCategoryPageMetaTags(url, category):
 		'keywords': generateKewordsForPage(category['posts'])
 	}
 
-def getBlogPostPageMetaTags(url, post):
+def getPostPageMetaTags(url, post):
 	return {
-		'title': 'Fitness Blog Za Zene - Personalni Trener Jelena Stevanovic - Licni Trener Novi Sad',
-		'description': 'Najnoviji tesktovi i odgovori na pitanja: kako napredovati u terertani, kako brzo smrsati, dijete za ravan stomak, lako do trbusnjaka, zatezanje zadnjicem, kako se resiti celulita.',
+		'title': post['title'],
+		'description': post['description'],
 		'url': baseUrl + url,
 		'image': post['imgUrl'],
-		'keywords': generateKewordsForPost(post)
-	}
-
-def getCookPostPageMetaTags(url, post):
-	return {
-		'title': 'Fitness Blog Za Zene - Personalni Trener Jelena Stevanovic - Licni Trener Novi Sad',
-		'description': 'Najnoviji tesktovi i odgovori na pitanja: kako napredovati u terertani, kako brzo smrsati, dijete za ravan stomak, lako do trbusnjaka, zatezanje zadnjicem, kako se resiti celulita.',
-		'url': baseUrl + url,
-		'image': imageUrl,
 		'keywords': generateKewordsForPost(post)
 	}
 
@@ -131,7 +122,7 @@ def generateKewordsForPost(post):
     		(post['title'].lower() + post['description'].lower()).split(' ')
     	)
     )
-		
+
 def addSeoEntitiesForCategory(baseUrl, category, posts):
     if category == 'fitnes-treninzi-saveti-i-vezbe':
         categoryWithSeoEntities = {
@@ -163,8 +154,9 @@ def addSeoEntitiesForCategory(baseUrl, category, posts):
             'title': 'Fitnes Kuvar Za Žene -Najbolji Recepti Za Vašu Fitnes Večeru',
             'description': 'Najbolji recepti za vašu fitnes večeru, kako da brzo i lako napravite sjajnu i zdravu večeru koja će omogućiti vašem telu odmor koji mu je potreban'
         }
-		
+
     categoryWithSeoEntities['posts'] = posts
     categoryWithSeoEntities['link'] = baseUrl + '/' + category
 
     return categoryWithSeoEntities
+

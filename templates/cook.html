@@ -1,16 +1,16 @@
 {% extends "layout.html" %}
 
 {% block metatags %}
-    {% if data['blogPost'] %}
-          {% include 'includes/blog/meta-tags-blog-post.html' %}
+    {% if data['cookPost'] %}
+          {% include 'includes/cook/meta-tags-cook-post.html' %}
     {% else %}
           {% include 'includes/common/meta-tags.html' %}
     {% endif %}
-{% endblock %} 
+{% endblock %}
 
-{% block headerFirstTitle %} Fitnes Kuvar i Recepti {% endblock %} 
+{% block headerFirstTitle %} Fitnes Kuvar i Recepti {% endblock %}
 
-{% block headerSecondTitle %} Lični Trener Jelena Stevanovic {% endblock %} 
+{% block headerSecondTitle %} Lični Trener Jelena Stevanovic {% endblock %}
 
 {% block content %}
   <div class="component cook blog">
@@ -22,7 +22,7 @@
         {% elif data['cookPost'] %}
           {% include 'includes/cook/cook-single-post-page.html' %}
         {% else %}
-          {% include 'includes/cook/cook-home-page.html' %}        
+          {% include 'includes/cook/cook-home-page.html' %}
         {% endif %}
       </div>
     </div>

@@ -1,4 +1,5 @@
 import re
+from  functools import reduce
 
 def filterArrayByKey(array, key, value):
     return reverseArrayOrder(
@@ -43,7 +44,7 @@ def createPostLink(data, post, category='', isSidebar = False):
     elif 'cookCategory' in data and not isSidebar and not category:
          return data['cookCategory']['link'] + '/' + kebabCase(post['title'])
     elif  'cookCategories' in data:
-        return data['cookCategories'][category]['link'] + '/' + kebabCase(post['title'])        
+        return data['cookCategories'][category]['link'] + '/' + kebabCase(post['title'])
 
 def findInArray(callback, array):
     for item in array:

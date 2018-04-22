@@ -28,8 +28,40 @@
         "userInteractionCount": "357"
       }
     ],
-    "name": "{{ data.meta.title }}"
-    "description": {{ data.meta.description }},
-    "image": "{{ data.meta.image }}"
+    "name": "{{ data.meta.title }}",
+    "description": "{{ data.meta.description }}",
+    "image": "{{ data.meta.image }}",
+    "datePublished": "{{ data.blogPost.date }}",
+    "dateModified": "{{ data.blogPost.date }}",
+    "headline": "{{ data.meta.title }}",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http://jelenastevanovic.rs"
+    },
+    "publisher": {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "email": "mailto:stevanovich.jelena(at)mail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Novi Sad",
+        "addressRegion": "Srbija",
+        "postalCode":"21000",
+        "streetAddress": "8 Banovic Strahinje"
+      },
+      "logo": {
+        "@context": "http://schema.org",
+        "@type": "ImageObject",
+        "author": "Jelena Stevanovic fitnes trener za zene Novi Sad",
+        "contentLocation": "Novi Sad, Serbia",
+        "contentUrl": "http://res.cloudinary.com/dgq2ohvtq/image/upload/v1496691641/logo_vuihpz.png",
+        "datePublished": "2018-01-25",
+        "description": "Logo personalnog trenera za zene Novi Sad",
+        "name": "Jelena Stevanovic fitnes trener za zene Novi Sad - Logo",
+        "url": "http://res.cloudinary.com/dgq2ohvtq/image/upload/v1496691641/logo_vuihpz.png"
+      },
+      "name": "Jelena Stevanovic fitnes trener za zene Novi Sad",
+      "url": "http://jelenastevanovic.rs"
+    }
   }
 </script>

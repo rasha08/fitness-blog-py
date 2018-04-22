@@ -1,7 +1,7 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 
 from seo import getMetaTagsForEntyty
-from database import getAllBlogPosts, getBlogHomePagePosts, getAllPosts, getBlogPageSidebar, getCategoryPosts, getSingleBlogPost, getAllCookPosts, getCookPageSidebar, getCookPagePosts
+from database import getAllBlogPosts, getBlogHomePagePosts, getAllPosts, getBlogPageSidebar, getCategoryPosts, getSingleBlogPost, getAllCookPosts, getCookPageSidebar, getCookPagePosts, getSingleCookPost
 from utils import createPostLink
 
 app = Flask(__name__)
@@ -43,7 +43,6 @@ def showBlogPage():
 @app.route('/fitnes-blog-saveti-za-zene/<category>')
 def showBlogCategoryPage(category):
     blogCategory = getCategoryPosts(baseBlogUrl, category)
-    print(blogCategory)
     if blogCategory is None:
         return redirect(url_for('showBlogPage'))
 
@@ -93,7 +92,7 @@ def showCookPage():
         }
     }
 
-    return render_template('cook.html', data=data)    
+    return render_template('cook.html', data=data)
 
 @app.route('/fitnes-kuvar-zdrava-hrana-recepti/<category>')
 def showCookCategoryPage(category):
@@ -113,5 +112,36 @@ def showCookCategoryPage(category):
 
     return render_template('cook.html', data=data)
 
+@app.route('/fitnes-kuvar-zdrava-hrana-recepti/<category>/<post>')
+def showCookPostPage(category, post):
+    cookPost = getSingleCookPost(category, post)
+    if cookPost is None:
+        return redirect(url_for('showCookCategoryPage', category = category))
+
+    data = {
+        'cookCategories': getCookPagePosts(),
+        'meta': getMetaTagsForEntyty(
+            'cookPost',
+            baseBlogUrl + '/' + category + '/' + post,
+            None,
+            cookPost
+        ),
+        'cookPost': cookPost,
+        'sidebar': getCookPageSidebar(),
+        'helpers': {
+            'createPostLink': createPostLink,
+        }
+    }
+
+    return render_template('cook.html', data=data)
+
+@app.route('/kontakt', methods=['GET', 'POST'])
+def handleContact():
+    data = {'meta': getMetaTagsForEntyty('home', '')}
+
+    if request.method == 'POST':
+        return render_template('contact.html')
+
+    return render_template('contact.html', data=data)
 
 app.run()

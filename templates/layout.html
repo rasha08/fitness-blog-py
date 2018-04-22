@@ -84,7 +84,7 @@
             <hr>
             <p>© 2017 Sva prava zadrzava jelenastevanovic.rs</p>
         </div>
-    </div>    
+    </div>
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
@@ -96,6 +96,7 @@
         $( '.recipe-card' ).each( function(){
             $( this ).css( 'background-image', `url(${$( this ).attr( 'data-background' )})`);
         });
+        $('.collapsible').collapsible();
     });
 </script>
 </html>

@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block metatags %}
+    {% if data['blogPost'] %}
+          {% include 'includes/blog/meta-tags-blog-post.html' %}
+    {% else %}
+          {% include 'includes/common/meta-tags.html' %}
+    {% endif %}
+{% endblock %}
+
+{% block headerFirstTitle %} Fitnes Trener Za Žene {% endblock %}
+
+{% block headerSecondTitle %} Jelena Stevanovic {% endblock %}
+
+{% block content %}
+<div class="col s12 component contact">
+    <!-- <h1>Personalni Trener Za Žene Jelena Stevanović - Kontakt</h1> -->
+    <div class="col offset-s4 s6">
+        <form method="POST" action="mail_handler.php">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input type="text" id="name" class="validate" name="first_name">
+                    <label for="name" data-error="wrong" data-success="right" class="">
+                        Vaše Ime
+                    </label>
+                </div>
+                <div class="input-field col s12">
+                    <input type="text" id="last_name" class="validate" name="last_name">
+                    <label for="name" data-error="wrong" data-success="right">
+                        Vaše Prezime
+                    </label>
+                </div>
+                <div class="input-field col s12">
+                    <input type="text" id="name" class="validate" name="fb">
+                    <label for="name" data-error="wrong" data-success="right">
+                        Link do Vašeg Facebook profila / Vaš Broj Telefona
+                    </label>
+                </div>
+                <div class="input-field col s12">
+                    <input type="email" id="email" class="validate" name="email">
+                    <label for="email" data-error="wrong" data-success="right">
+                        Vaša Email Adresa
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="textarea1" class="materialize-textarea" name="message"></textarea>
+                        <label for="textarea1">
+                            Mesto za Vašu poruku...
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn waves-effect waves-light">
+                    Pošalji
+                    <i class="material-icons right">email</i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
