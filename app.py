@@ -1,147 +1,71 @@
 from flask import Flask, render_template, redirect, url_for, request
 
-from seo import getMetaTagsForEntyty
-from database import getAllBlogPosts, getBlogHomePagePosts, getAllPosts, getBlogPageSidebar, getCategoryPosts, getSingleBlogPost, getAllCookPosts, getCookPageSidebar, getCookPagePosts, getSingleCookPost
-from utils import createPostLink
+from database import getAllPosts
+from prepare_response import getDataForRoute
+from mail_sender import sendMessageFromContactPage
 
 app = Flask(__name__)
 
 getAllPosts()
 
-baseBlogUrl = '/fitnes-blog-saveti-za-zene'
-baseCookUrl = '/fitnes-kuvar-zdrava-hrana-recepti'
-
 @app.route('/')
 def showIndexPage():
-    data = {'meta': getMetaTagsForEntyty('home', '')}
-
-    return render_template('home.html', data=data)
-
+    return render_template('home.html', data = getDataForRoute('index'))
 
 @app.route('/personalni-treninzi-za-zene-novi-sad')
 def showServicesPage():
-    data = {
-        'meta': getMetaTagsForEntyty('services', '/personalni-treninzi-za-zene-novi-sad')
-    }
-
-    return render_template('services.html', data=data)
-
+    return render_template('services.html', data = getDataForRoute('services'))
 
 @app.route('/fitnes-blog-saveti-za-zene')
 def showBlogPage():
-    data = {
-        'blogCategories': getBlogHomePagePosts(),
-        'meta': getMetaTagsForEntyty('blog', baseBlogUrl, getAllBlogPosts()),
-        "sidebar": getBlogPageSidebar(),
-        "helpers": {
-            "createPostLink": createPostLink
-        }
-    }
-
-    return render_template('blog.html', data=data)
+    return render_template('blog.html', data = getDataForRoute('blog'))
 
 @app.route('/fitnes-blog-saveti-za-zene/<category>')
 def showBlogCategoryPage(category):
-    blogCategory = getCategoryPosts(baseBlogUrl, category)
-    if blogCategory is None:
+    data = getDataForRoute('blogCategory', category)
+    if data is None:
         return redirect(url_for('showBlogPage'))
 
-    data = {
-        'blogCategories': getBlogHomePagePosts(),
-        'blogCategory': blogCategory,
-        'meta': getMetaTagsForEntyty('blogCategory', baseBlogUrl + '/' + category, blogCategory),
-        'sidebar': getBlogPageSidebar(),
-        'helpers': {
-            'createPostLink': createPostLink
-        }
-    }
-
-    return render_template('blog.html', data=data)
+    return render_template('blog.html', data = data)
 
 @app.route('/fitnes-blog-saveti-za-zene/<category>/<post>')
 def showBlogPost(category, post):
-    blogPost = getSingleBlogPost(category, post)
-    if blogPost is None:
+    data = getDataForRoute('blogPost', category, post)
+    if data is None:
         return redirect(url_for('showBlogCategoryPage', category = category))
 
-    data = {
-        'blogCategories': getBlogHomePagePosts(),
-        'meta': getMetaTagsForEntyty(
-            'blogPost',
-            baseBlogUrl + '/' + category + '/' + post,
-            None,
-            blogPost
-        ),
-        'blogPost': blogPost,
-        'sidebar': getBlogPageSidebar(),
-        'helpers': {
-            'createPostLink': createPostLink
-        }
-    }
-
-    return render_template('blog.html', data=data)
+    return render_template('blog.html', data = data)
 
 @app.route('/fitnes-kuvar-zdrava-hrana-recepti')
 def showCookPage():
-    data = {
-        'meta': getMetaTagsForEntyty('cook' ,baseCookUrl, getAllCookPosts()),
-        'cookCategories': getCookPagePosts(),
-        'sidebar': getCookPageSidebar(),
-        'helpers': {
-            'createPostLink': createPostLink
-        }
-    }
-
-    return render_template('cook.html', data=data)
+    return render_template('cook.html', data = getDataForRoute('cook'))
 
 @app.route('/fitnes-kuvar-zdrava-hrana-recepti/<category>')
 def showCookCategoryPage(category):
-    cookCategory = getCategoryPosts(baseCookUrl, category)
-    if cookCategory is None:
-        return redirect(url_for('showCookPage'))
+    data = getDataForRoute('cookCategory', category)
+    if data is None:
+        return redirect(url_for('showCookPage')) 
 
-    data = {
-        'cookCategories': getCookPagePosts(),
-        'cookCategory': cookCategory,
-        'meta': getMetaTagsForEntyty('cookCategory', baseCookUrl + '/' +category, cookCategory),
-        'sidebar': getCookPageSidebar(),
-        'helpers': {
-            'createPostLink': createPostLink
-        }
-    }
-
-    return render_template('cook.html', data=data)
+    return render_template('cook.html', data = data)
 
 @app.route('/fitnes-kuvar-zdrava-hrana-recepti/<category>/<post>')
 def showCookPostPage(category, post):
-    cookPost = getSingleCookPost(category, post)
-    if cookPost is None:
+    data = getDataForRoute('cookPost', category, post)
+    if data is None:
         return redirect(url_for('showCookCategoryPage', category = category))
 
-    data = {
-        'cookCategories': getCookPagePosts(),
-        'meta': getMetaTagsForEntyty(
-            'cookPost',
-            baseBlogUrl + '/' + category + '/' + post,
-            None,
-            cookPost
-        ),
-        'cookPost': cookPost,
-        'sidebar': getCookPageSidebar(),
-        'helpers': {
-            'createPostLink': createPostLink,
-        }
-    }
-
-    return render_template('cook.html', data=data)
+    return render_template('cook.html', data = data)
 
 @app.route('/kontakt', methods=['GET', 'POST'])
 def handleContact():
-    data = {'meta': getMetaTagsForEntyty('home', '')}
-
     if request.method == 'POST':
-        return render_template('contact.html')
+        sendMessageFromContactPage(request.form)
+        return render_template('contact.html', data = getDataForRoute('contact'))
 
-    return render_template('contact.html', data=data)
+    return render_template('contact.html', data = getDataForRoute('contact'))
+
+@app.route('/<path:path>')
+def catch_all(path):
+    return redirect(url_for('showIndexPage'))
 
 app.run()

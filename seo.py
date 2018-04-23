@@ -26,6 +26,9 @@ def getMetaTagsForEntyty(entity, url = '', posts = None, post = None):
 		return getPostPageMetaTags(url, post)
 	elif entity == 'cookPost':
 		return getPostPageMetaTags(url, post)
+	elif entity == 'contact':
+		return getContactPageMetaTags(url)
+  		
 
 
 def getHomePageMetaTags(url):
@@ -160,3 +163,11 @@ def addSeoEntitiesForCategory(baseUrl, category, posts):
 
     return categoryWithSeoEntities
 
+def getContactPageMetaTags(url):
+	return {
+		'title': 'Kontakt - Jelena Stevanovic - Licni Fitnes Trener Za Zene',
+		'description': 'Jelena Stevanovic - Licni fitnes trener za zene, zakazite svoj trening vec danas. Budite slobodni da me kontaktirate ako imate pitanja u vezi pravilne ishrane ili fitnes treninga',
+		'url': baseUrl + url,
+		'image': imageUrl,
+		'keywords': 'jelena,stevanovic,individualni,treninzi,novi,sad,kontakt,zakazi,trening,personalni,zene'
+	}
