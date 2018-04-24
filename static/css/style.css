@@ -850,6 +850,30 @@ div.component.cook.blog div.blog-post-img.col.l6.m6.s12 > img {
   font-size: calc(9px + 0.4vw);
 }
 
+input, textarea {
+  color: goldenrod !important;
+}
+
+#message.message-success {
+  padding: 2%;
+  margin-left: auto;
+  position: absolute;
+  z-index: 9999999999;
+  background-color: rgba(0, 0, 0, 0.99);
+  border: 1px solid goldenrod;
+  color: rgba(42, 125, 79, 0.9);
+}
+
+#message.message-error {
+  padding: 2%;
+  position: absolute;
+  margin-left: auto;  
+  z-index: 9999999999;
+  background-color: rgba(0, 0, 0, 0.99);
+  border: 1px solid firebrick;
+  color: firebrick;
+}
+
 /* MEDIA QUERIES*/
 @media screen and (max-width: 601px) and (min-width: 300px) {
   .go-up {

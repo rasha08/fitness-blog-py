@@ -14,37 +14,45 @@
 
 {% block content %}
 <div class="col s12 component contact">
-    <!-- <h1>Personalni Trener Za Žene Jelena Stevanović - Kontakt</h1> -->
     <div class="col offset-s4 s6">
         <form method="POST" action="">
+            {% if data['status']['status'] %}
+                {% if data['status']['status'] == 'success' %}
+                    <h5 class="message-success" id="message">{{ data['status']['message'] }}</h5>
+                {% elif data['status']['status'] == 'error' %}
+                    <h5 class="message-error" id="message">{{ data['status']['message'] }}</h5>
+                {% endif %}
+                <script>setTimeout(() => {$('#message').hide(500)}, 2500)</script>
+            {% endif %}
+            <h1 class="hidden">Personalni Trener Za Žene Jelena Stevanović - Kontakt</h1>
             <div class="row">
                 <div class="input-field col s12">
-                    <input type="text" id="name" class="validate" name="first_name">
+                    <input type="text" id="name" class="validate" name="first_name" required>
                     <label for="name" data-error="wrong" data-success="right" class="">
                         Vaše Ime
                     </label>
                 </div>
                 <div class="input-field col s12">
-                    <input type="text" id="last_name" class="validate" name="last_name">
+                    <input type="text" id="last_name" class="validate" name="last_name" required>
                     <label for="name" data-error="wrong" data-success="right">
                         Vaše Prezime
                     </label>
                 </div>
                 <div class="input-field col s12">
-                    <input type="text" id="name" class="validate" name="fb">
+                    <input type="text" id="name" class="validate" name="fb" required>
                     <label for="name" data-error="wrong" data-success="right">
                         Link do Vašeg Facebook profila / Vaš Broj Telefona
                     </label>
                 </div>
                 <div class="input-field col s12">
-                    <input type="email" id="email" class="validate" name="email">
+                    <input type="email" id="email" class="validate" name="email" required>
                     <label for="email" data-error="wrong" data-success="right">
                         Vaša Email Adresa
                     </label>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="textarea1" class="materialize-textarea" name="message"></textarea>
+                        <textarea id="textarea1" class="materialize-textarea" name="message" required></textarea>
                         <label for="textarea1">
                             Mesto za Vašu poruku...
                         </label>

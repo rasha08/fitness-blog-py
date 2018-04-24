@@ -59,8 +59,8 @@ def showCookPostPage(category, post):
 @app.route('/kontakt', methods=['GET', 'POST'])
 def handleContact():
     if request.method == 'POST':
-        sendMessageFromContactPage(request.form)
-        return render_template('contact.html', data = getDataForRoute('contact'))
+        status = sendMessageFromContactPage(request.form)
+        return render_template('contact.html', data = getDataForRoute('contact', None, None, status))
 
     return render_template('contact.html', data = getDataForRoute('contact'))
 
