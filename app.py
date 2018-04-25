@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request
 
 from database import getAllPosts
 from prepare_response import getDataForRoute
-from mail_sender import sendMessageFromContactPage
+from mail_sender import sendMessageFromContactPage, applyForTreninings
 
 app = Flask(__name__)
 
@@ -12,8 +12,11 @@ getAllPosts()
 def showIndexPage():
     return render_template('home.html', data = getDataForRoute('index'))
 
-@app.route('/personalni-treninzi-za-zene-novi-sad')
+@app.route('/personalni-treninzi-za-zene-novi-sad', methods=['GET', 'POST'])
 def showServicesPage():
+    if request.method == 'POST':
+        applyForTreninings(request.form)
+
     return render_template('services.html', data = getDataForRoute('services'))
 
 @app.route('/fitnes-blog-saveti-za-zene')
@@ -44,7 +47,7 @@ def showCookPage():
 def showCookCategoryPage(category):
     data = getDataForRoute('cookCategory', category)
     if data is None:
-        return redirect(url_for('showCookPage')) 
+        return redirect(url_for('showCookPage'))
 
     return render_template('cook.html', data = data)
 
@@ -63,6 +66,7 @@ def handleContact():
         return render_template('contact.html', data = getDataForRoute('contact', None, None, status))
 
     return render_template('contact.html', data = getDataForRoute('contact'))
+
 
 @app.route('/<path:path>')
 def catch_all(path):

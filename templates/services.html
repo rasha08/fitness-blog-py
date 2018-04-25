@@ -2,7 +2,7 @@
 {% extends "layout.html" %}
 
 {% block metatags %}
-  {% include 'includes/common/meta-tags.html' %}   
+  {% include 'includes/common/meta-tags.html' %}
 {% endblock %}
 
 {% block headerFirstTitle %} Personalni Trener {% endblock %}
@@ -13,7 +13,7 @@
   <div class="col m12 l12 s12 services component center-align">
     <div class="service-one">
       <h1>Individualni Treninzi - Novi Sad - Personalni Fitnes Trener Za Zene</h1>
-        
+
         <div class="col m12 l12 s12 personal z-depth-5 row center-align">
             <h2>Personalni treninzi</h2>
             <div class="col l6 m6 s12">
@@ -33,7 +33,7 @@
     <div class="container center-align">
         <h3>Prijavite se za vesti sa mog sajta...</h3>
         <div class="row">
-            <form class="col s12"><div class="row">
+            <form class="col s12" method="post"><div class="row">
                 <div class="input-field col s8">
                     <input type="email" id="email" class="validate">
                     <label for="email" data-error="wrong" data-success="right">Email</label>
@@ -80,18 +80,18 @@
                 </li>
             </ul>
         </div>
-        <form class="col l5 m12 s12" method="POST" action="mail_handler.php">
+        <form class="col l5 m12 s12" method="POST" action="">
             <div class="row">
                 <div class="input-field col s12">
-                    <input type="text" id="first_name" class="validate" name="first_name">
+                    <input type="text" id="first_name" class="validate" name="first_name" required>
                     <label for="first_name" data-error="wrong" data-success="right">Vaše Ime</label>
                 </div>
                 <div class="input-field col s12">
-                    <input type="email" id="email" class="validate">
+                    <input type="email" id="email" class="validate" name="email" required>
                     <label for="email" data-error="wrong" data-success="right">Vaša Email Adresa</label>
                 </div>
                 <div class="input-field col s12">
-                    <input type="text" id="phone" class="validate" name="fb">
+                    <input type="text" id="phone" class="validate" name="fb" required>
                     <label for="phone" data-error="wrong" data-success="right">Vaš Broj Telefona</label>
                 </div>
                 <input type="hidden" name="application" value="true">

@@ -15,7 +15,21 @@ def sendMessageFromContactPage(data):
 
     }
     return sendMessage(data)
-        
+
+
+def applyForTreninings(data):
+    if not data['email'] or not data['application']:
+        return None
+
+    data = {
+        'email': data['email'],
+        'subject': 'Prijava za treninge',
+        'fblink': data['fb'],
+        'user': data['first_name'],
+        'message': 'Prijava za treninge sa sajta jelenastevanovic.rs'
+
+    }
+    return sendMessage(data)
 
 def sendMessage(data):
     return requests.post(
@@ -26,7 +40,7 @@ def sendMessage(data):
             "to": "rasha08@gmail.com",
             "subject": data['subject'],
             "text": data['message'],
-            "html": '<!DOCTYPE html> <html> <head> <meta charset="UTF-8"> <title>'+ data['subject'] +'</title> </head> <body> <h2> '+ data['subject'] +' </h2> <table style="width:450px;text-align:center !important"> <tr> <th style="width:150px;">Korisnik</th> <th style="width:150px;">Korisnikov email</th> <th style="width:150px;">facebook / telefon</th> </tr><tr> <td style="width:150px;">'+ data['user'] +'</td><td style="width:150px;">'+ data['email'] +'</td><td style="width:150px;">'+ data['fblink'] +'</td></tr></table><br><br> <h3><small><b>PORUKA:</b></small> '+ data['message'] +'</h3></body> </html>s'
+            "html": '<!DOCTYPE html> <html> <head> <meta charset="UTF-8"> <title>'+ data['subject'] +'</title> </head> <body> <h2> '+ data['subject'] +' </h2> <table style="width:450px;text-align:center !important"> <tr> <th style="width:150px;">Korisnik</th> <th style="width:150px;">Korisnikov email</th> <th style="width:150px;">facebook / telefon</th> </tr><tr> <td style="width:150px;">'+ data['user'] +'</td><td style="width:150px;">'+ data['email'] +'</td><td style="width:150px;">'+ data['fblink'] +'</td></tr></table><br><br> <h3><small><i>PORUKA:</i></small> '+ data['message'] +'</h3></body> </html>'
         }
     )
 

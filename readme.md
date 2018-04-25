@@ -1,4 +1,4 @@
-# FITNES BLOG WEBSITE WRITEN IN FLASK
+# FITNESS BLOG WEBSITE WRITTEN IN FLASK
 
 ## pip install
 ## python app.python
