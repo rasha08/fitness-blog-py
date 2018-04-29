@@ -28,6 +28,8 @@ def getMetaTagsForEntyty(entity, url = '', posts = None, post = None):
 		return getPostPageMetaTags(url, post)
 	elif entity == 'contact':
 		return getContactPageMetaTags(url)
+	elif entity == 'admin':
+  		return getAdminPageMetaTags(url)
   		
 
 
@@ -167,6 +169,14 @@ def getContactPageMetaTags(url):
 	return {
 		'title': 'Kontakt - Jelena Stevanovic - Licni Fitnes Trener Za Zene',
 		'description': 'Jelena Stevanovic - Licni fitnes trener za zene, zakazite svoj trening vec danas. Budite slobodni da me kontaktirate ako imate pitanja u vezi pravilne ishrane ili fitnes treninga',
+		'url': baseUrl + url,
+		'image': imageUrl,
+		'keywords': 'jelena,stevanovic,individualni,treninzi,novi,sad,kontakt,zakazi,trening,personalni,zene'
+	}
+def getAdminPageMetaTags(url):
+  	return {
+		'title': 'Amin - Jelena Stevanovic - Licni Fitnes Trener Za Zene',
+		'description': 'Admin Zona Aplikacije',
 		'url': baseUrl + url,
 		'image': imageUrl,
 		'keywords': 'jelena,stevanovic,individualni,treninzi,novi,sad,kontakt,zakazi,trening,personalni,zene'

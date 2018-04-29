@@ -1,0 +1,21 @@
+<form method="POST" action="">
+    {% if data['status']['status'] %}
+        {% if data['status']['status'] == 'error' %}
+            <h5 class="message-error" id="message">{{ data['status']['message'] }}</h5>
+        {% endif %}
+        <script>setTimeout(() => {$('#message').hide(500)}, 2500)</script>
+    {% endif %}
+    <h1 class="hidden">Admin Zona</h1>
+    <div class="row">
+        <div class="input-field col s12">
+            <input type="password" id="name" class="validate" name="password" required>
+            <label for="name" data-error="wrong" data-success="right" class="">
+                Lozinka
+            </label>
+        </div>
+        <button type="submit" class="btn waves-effect waves-light">
+            Prijavi se
+            <i class="material-icons right">locked</i>
+        </button>
+    </div>
+</form>

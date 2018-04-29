@@ -1,6 +1,6 @@
 from seo import getMetaTagsForEntyty
 from database import getAllBlogPosts, getBlogHomePagePosts, getAllPosts, getBlogPageSidebar, getSingleBlogPost, getAllCookPosts, getCookPageSidebar, getCookPagePosts, getSingleCookPost, getCategoryPosts
-from utils import createPostLink
+from utils import createPostLink, formatAlertStatusAndMessage
 
 baseBlogUrl = '/fitnes-blog-saveti-za-zene'
 baseCookUrl = '/fitnes-kuvar-zdrava-hrana-recepti'
@@ -24,6 +24,8 @@ def getDataForRoute(pageType, categoryUrl = '', postUrl = '', status=''):
     return getCookPostData(categoryUrl, postUrl)
   elif pageType == 'contact':
     return getContactPageData(status)
+  elif pageType == 'admin':
+    return getAdminPageData(status)
 
 def getIndexPageData():
   return{'meta': getMetaTagsForEntyty('home', '')}
@@ -124,22 +126,15 @@ def getCookPostData(categoryUrl, postUrl):
   }
 
 def getContactPageData(status):
-  data = {
+ return {
     'meta': getMetaTagsForEntyty('contact', '/kontakt'),
-    'status': None
+    'status': formatAlertStatusAndMessage(status)
   }
 
-  if status is None:
-      data['status'] = {
-          'status': 'error',
-          'message': 'Molim Vas unesite ispravne podatke'
-      }
-  elif status == '':
-      data['status'] = None
-  else:    
-      data['status'] = {
-          'status': 'success',
-          'message': 'Hvala što mi pišete, odgovor na vaše pitanje očekujte u narednih 24h'
-      }
 
-  return data
+def getAdminPageData(status=''):
+  return {
+    'meta': getMetaTagsForEntyty('admin', '/admin'),
+    'status': formatAlertStatusAndMessage(status)
+  }
+    

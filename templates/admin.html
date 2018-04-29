@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block metatags %}
+    {% if data['blogPost'] %}
+          {% include 'includes/blog/meta-tags-blog-post.html' %}
+    {% else %}
+          {% include 'includes/common/meta-tags.html' %}
+    {% endif %}
+{% endblock %}
+
+{% block headerFirstTitle %} Fitnes Trener Za Žene {% endblock %}
+
+{% block headerSecondTitle %} Jelena Stevanovic {% endblock %}
+
+{% block content %}
+<div class="col s12 component contact admin">
+    <div class="col offset-s4 s6">
+        {% if data['page'] == 'main'  %}
+            {% include 'includes/admin/main.html' %}
+        {% elif data['page'] == 'section' %}
+            {% include 'includes/admin/forms.html' %}
+        {% else %}
+            {% include 'includes/admin/login.html' %}        
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

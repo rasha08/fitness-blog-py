@@ -86,4 +86,18 @@ def prepareWordForKeywords(word):
     preparedWord = re.sub(r"/^sa$/", '', preparedWord)
     preparedWord = re.sub(r"/^se$/", '', preparedWord)
 
-    return re.sub(r"</[&\/\\#,+()$~%.':*?<>{}]/", '', preparedWord)
+    return re.sub(r"/[&\/\\#,+()$~%.':*?<>{}]/", '', preparedWord)
+    
+def formatAlertStatusAndMessage(status):
+    if status is None:
+        return {
+            'status': 'error',
+            'message': 'Molim Vas unesite ispravne podatke'
+        }
+    elif status == '':
+        return None
+    else:    
+        return {
+            'status': 'success',
+            'message': 'Hvala što mi pišete, odgovor na vaše pitanje očekujte u narednih 24h'
+        }

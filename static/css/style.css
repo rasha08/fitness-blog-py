@@ -228,6 +228,13 @@ li.flow-text {
   background-size: cover;
   background-position-y: 10%;
 }
+
+.admin form {
+   min-height: 70vh !important;
+   width: 50vw !important;
+   min-width: 320px !important;
+   margin: auto !important
+}
 .gallery-body {
   display: inline-block;
   overflow: hidden;
@@ -872,6 +879,15 @@ input, textarea {
   background-color: rgba(0, 0, 0, 0.99);
   border: 1px solid firebrick;
   color: firebrick;
+}
+
+.services.admin form {
+  margin-top: 0% !important;
+  margin-left: 25% !important;
+}
+
+.services.admin {
+  padding: 0% !important;
 }
 
 /* MEDIA QUERIES*/

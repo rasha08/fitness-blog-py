@@ -1,8 +1,9 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, session
 
 from database import getAllPosts
 from prepare_response import getDataForRoute
 from mail_sender import sendMessageFromContactPage, applyForTreninings
+from admin import loginAdmin
 
 app = Flask(__name__)
 
@@ -67,9 +68,49 @@ def handleContact():
 
     return render_template('contact.html', data = getDataForRoute('contact'))
 
+@app.route('/admin', methods=['GET', 'POST'])
+def showAdminIndexPage():
+    if request.method == 'POST':
+        status = loginAdmin(request.form)
+        if status == 'success':
+            session['admin'] = True
+            return redirect(url_for('showAdminMainPage'))
+
+        return render_template('admin.html', data = getDataForRoute('admin', None, None, status))
+
+    if 'admin' in session:
+        return redirect(url_for('showAdminMainPage'))
+
+    return render_template('admin.html', data = getDataForRoute('admin', None, None))
+
+@app.route('/admin/main')
+def showAdminMainPage():
+    if not 'admin' in session:
+        return redirect(url_for('showAdminIndexPage'))
+    
+    data = getDataForRoute('admin', None, None)
+    data['page'] = 'main';
+
+    return render_template('admin.html', data = data)
+
+@app.route('/admin/main/<section>')
+def showAdminSectionPage(section):
+    if not 'admin' in session:
+        return redirect(url_for('showAdminIndexPage'))
+    
+    data = getDataForRoute('admin', None, None)
+    data['page'] = 'section'
+    data['section'] = section
+
+    return render_template('admin.html', data = data)
 
 @app.route('/<path:path>')
 def catch_all(path):
     return redirect(url_for('showIndexPage'))
 
-app.run()
+if __name__ == "__main__":
+    app.secret_key = '8725cde364e49a09787978a377808c65'
+    app.config['SESSION_TYPE'] = 'filesystem'
+
+    app.debug = True
+    app.run()

@@ -1,0 +1,42 @@
+<div class="col offset-s1 s10 services admin center">
+    <div class="row center">
+        {% if data['section'] == 'blog' %}
+        <h1 class="hidden">Admin Zona - Kreiraj Blog Tekst</h1>
+        
+            <form class="col s12 center">
+                <div class="row">
+                    <div class="input-field col s6">
+                      <input type="text" class="validate"> 
+                      <label>Naslov Teksta</label></div></div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea class="materialize-textarea"></textarea>
+                        <label>Opis Teksta</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="row">
+                          <div class="input-field col s12">
+                              <input type="text" id="autocomplete-input" class="autocomplete" autocomplete="off">
+                              <label>Kategorija (ukucas prva 2 slova i izaberes)</label>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea class="materialize-textarea"></textarea>
+                        <label>Tekst</label>
+                    </div>
+                </div>
+            </form>
+        {% elif data['section'] == 'cook' %}
+
+        {% elif data['section'] == 'video' %}
+
+        {% else %}
+            <h1 class="hidden">Admin Zona - Data Sekcija Ne Postoji</h1>
+        {% endif %}
+  </div>
+</div>
