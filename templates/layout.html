@@ -51,7 +51,7 @@
                                 </a>
                             </li>
                             <li class="col l2 m2 s12">
-                                <a href="/galerija">
+                                <a href="/moja-fitnes-galerija">
                                     <span>GALERIJA</span>
                                 </a>
                             </li>
@@ -96,7 +96,11 @@
         $( '.recipe-card' ).each( function(){
             $( this ).css( 'background-image', `url(${$( this ).attr( 'data-background' )})`);
         });
+        $( '.thumb-img' ).each( function(){
+            $( this ).attr( 'src', $( this ).attr( 'data-src' ) );
+        });
         $('.collapsible').collapsible();
+        setTimeout(() => $('.gallery').addClass('ready'), 100)
     });
 </script>
 </html>

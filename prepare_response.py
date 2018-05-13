@@ -26,6 +26,8 @@ def getDataForRoute(pageType, categoryUrl = '', postUrl = '', status=''):
     return getContactPageData(status)
   elif pageType == 'admin':
     return getAdminPageData(status)
+  elif pageType == 'gallery':
+    return getGalleryPageData();
 
 def getIndexPageData():
   return{'meta': getMetaTagsForEntyty('home', '')}
@@ -137,4 +139,23 @@ def getAdminPageData(status=''):
     'meta': getMetaTagsForEntyty('admin', '/admin'),
     'status': formatAlertStatusAndMessage(status)
   }
-    
+
+def getGalleryPageData():
+   return {
+    'meta': getMetaTagsForEntyty('gallery', '/moja-fitnes-galerija'),
+    # temporarily hardcoded until gallery part of admin section is implemented
+    'images': [
+      'http://res.cloudinary.com/dgq2ohvtq/image/upload/v1498981366/DSC_0051-min_yxbkrp.jpg',
+      'http://res.cloudinary.com/dgq2ohvtq/image/upload/v1498981515/DSC_0111-min_iyebey.jpg',
+      'http://res.cloudinary.com/dgq2ohvtq/image/upload/v1498981632/DSC_0148-min_miaon5.jpg',
+      'http://res.cloudinary.com/dgq2ohvtq/image/upload/v1498981741/DSC_0157-min_vhftn3.jpg',
+      'http://res.cloudinary.com/dgq2ohvtq/image/upload/v1498981856/DSC_0187-min_yyjxbl.jpg',
+      'http://res.cloudinary.com/dgq2ohvtq/image/upload/v1498981960/DSC_0226a-min_y0erjq.jpg',
+      'http://res.cloudinary.com/dgq2ohvtq/image/upload/v1498982072/DSC_0254-min_afoms0.jpg',
+      'http://res.cloudinary.com/dgq2ohvtq/image/upload/v1498982175/12809559_445050005703516_8476667965764072254_n_ttiq9w.jpg',
+      'http://res.cloudinary.com/dgq2ohvtq/image/upload/v1498982228/10422148_445050009036849_2574643638262623362_n_gzfzio.jpg',
+      'http://res.cloudinary.com/dgq2ohvtq/image/upload/v1498982284/12795492_445050035703513_4508566350799193176_n_xhvzz7.jpg',
+      'http://res.cloudinary.com/dgq2ohvtq/image/upload/v1498982326/12800205_445050059036844_5734113033230004046_n_1_hakjbz.jpg',
+      'http://res.cloudinary.com/dgq2ohvtq/image/upload/v1498982349/12799263_445050095703507_3258923399304042572_n_sxq2ia.jpg'
+    ]
+  }

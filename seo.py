@@ -30,6 +30,8 @@ def getMetaTagsForEntyty(entity, url = '', posts = None, post = None):
 		return getContactPageMetaTags(url)
 	elif entity == 'admin':
   		return getAdminPageMetaTags(url)
+	elif entity == 'gallery':
+  		return getGalleryPageMetaTags(url)
   		
 
 
@@ -40,6 +42,14 @@ def getHomePageMetaTags(url):
 		'url': baseUrl,
 		'image': imageUrl,
 		'keywords': 'jelena,stevanovic,individualni,treninzi,novi,sad,kako,je,svaka,osoba,individua,za,sebe,,moramo,razlikovati,osobe,kojima,je,potrebna,dodatna,motivacija,i,konstantna,podrška,u,vezbanju'
+	}
+def getGalleryPageMetaTags(url):
+  	return {
+		'title': 'Jelena Stevanovic - Novi Sad - Moja Fitnes Galerija',
+		'description': 'Personalni treninzi za zene u Novom Sadu, moja fitnes galerija, pogledajte fotografije sa mojih licnih treninga, i prijavite se se za personalne trening za zene u Novom Sadu',
+		'url': baseUrl,
+		'image': imageUrl,
+		'keywords': 'jelena,stevanovic,individualni,treninzi,novi,sad,kako,je,svaka,osoba,individua,fitnes,sebe,,moramo,razlikovati,osobe,kojima,je,potrebna,dodatna,motivacija,galerija,konstantna,podrška,u,vezbanju'
 	}
 def getServicesPageMetaTags(url):
 	return {

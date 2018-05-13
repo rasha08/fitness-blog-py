@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block metatags %}
+  {% include 'includes/common/meta-tags.html' %}   
+{% endblock %}
+
+{% block headerFirstTitle %} Moja Galerija {% endblock %}
+
+{% block headerSecondTitle %} Fitnes Trener Jelena Stevanovic {% endblock %}
+
+{% block content %}
+<div class="component gallery">
+  <div class="gallery-body">
+    <div class="row">
+      {% for imageUrl in data['images'] %}
+      <div class="img-container col l3 m6 s12">
+        <img src="{{url_for('static', filename='images/loader.gif')}}" data-src="{{ imageUrl }}" class="responsive-img thumb-img" alt="personalni trener za zene novi sad" title="personalni trener za zene novi sad">
+        <div class="image-wrapper center-align">
+          <p class="flow-text col s12">dipl. fitness trener</p>
+          <h4 class="col s12">Jelena Stevanović</h4>
+          <a onclick="openImageModal('{{ imageUrl }}')" class="btn-floating btn-large waves-effect waves-light" role="button">
+            <i class="material-icons">open_in_new</i>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="false" id="image-modal">
+    <div class="container image-modal" id="open_image">
+      <button class="btn-floating btn-large waves-effect waves-light close">
+        <i class="material-icons">close</i>
+      </button>
+      <img src="{{url_for('static', filename='images/loader.gif')}}" alt="personalni trener" class="responsive-img center-align">
+    </div>
+  </div>
+</div>
+<script>
+  function openImageModal(imageUrl) {
+    setTimeout(() => {
+      $('#open_image img').attr('src', imageUrl);
+      $('#image-modal').removeClass('false').addClass('true');
+    }, 50)
+  }
+
+  function closeImageModal() {
+    $('#image-modal').removeClass('true').addClass('false');
+    setTimeout(() => {
+      $('false #open_image img').attr('src', "{{url_for('static', filename='images/loader.gif')}}");
+    }, 300)
+  }
+
+  window.addEventListener('click', function() {
+    closeImageModal();
+  })
+
+  setTimeout(() => {
+    if ($( document ).width() < 620) {
+      $('div.gallery-body  a').each( function(){
+        $( this ).hide();
+      })
+    }
+  }, 1200 )
+</script>
+{% endblock %}

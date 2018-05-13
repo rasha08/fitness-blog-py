@@ -11,7 +11,11 @@ getAllPosts()
 
 @app.route('/')
 def showIndexPage():
-    return render_template('home.html', data = getDataForRoute('index'))
+    return render_template('home.html', data=getDataForRoute('index'))
+
+@app.route('/moja-fitnes-galerija')
+def showGalleryPage():
+    return render_template('gallery.html', data = getDataForRoute('gallery'))
 
 @app.route('/personalni-treninzi-za-zene-novi-sad', methods=['GET', 'POST'])
 def showServicesPage():

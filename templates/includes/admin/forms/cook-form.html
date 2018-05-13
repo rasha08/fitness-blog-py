@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="input-field col s6">
+    <input type="text" class="validate" name="title">
+    <label>Naslov Recepta</label>
+  </div>
+</div>
+<div class="row">
+  <div class="input-field col s12">
+    <textarea class="materialize-textarea" name="description"></textarea>
+    <label class="">Opis Recepta</label>
+  </div>
+</div>
+<div class="row">
+  <div class="col s12">
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="text" id="autocomplete-input" class="autocomplete" autocomplete="off" name="category">
+        <label>Kategorija (ukucas prva 2 slova i izaberes)</label>
+        <ul class="autocomplete-content dropdown-content"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="input-field col s12">
+    <input type="text" class="validate" name="ingrediants">
+    <label>Sastojci (sastojci se moraju nabrajati na sledeći način: sastojak - količina,) primer: paradajz - 200g, brasno - 100g</label>
+  </div>
+</div>
+
+<script>
+  setTimeout(() => {
+    $('input.autocomplete').autocomplete({
+      data: {
+        doručak: null,
+        ručak: null,
+        večera: null
+      },
+      limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+      minLength: 1 // The minimum length of the input for the autocomplete to start. Default: 1.
+    });
+  }, 3500)
+</script>

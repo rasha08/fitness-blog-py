@@ -326,8 +326,8 @@ li.flow-text {
 }
 .image-modal {
   z-index: 99999;
-  position: absolute;
-  top: 200px;
+  position: fixed;
+  bottom: 0px;
   width: 98vw;
   height: 100vh;
   text-align: center;
@@ -350,11 +350,11 @@ li.flow-text {
 }
 .false .image-modal {
   opacity: 0;
-  transform: rotateX(90deg) translateY(-22vh) rotateZ(90deg);
+  transform: rotateX(90deg) translateY(0px) rotateZ(90deg);
 }
 .true .image-modal {
   opacity: 1;
-  transform: rotateX(0deg) translateY(-22vh) rotateZ(0deg) translateX(2vw);
+  transform: rotateX(0deg) translateY(0px) rotateZ(0deg) translateX(2vw);
 }
 .image-modal img {
   max-width: 90vw;
