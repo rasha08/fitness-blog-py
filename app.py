@@ -108,6 +108,11 @@ def showAdminSectionPage(section):
 
     return render_template('admin.html', data = data)
 
+@app.route('/refresh-cache')
+def refreshCache():
+    getAllPosts()
+    return 'OK'
+
 @app.route('/<path:path>')
 def catch_all(path):
     return redirect(url_for('showIndexPage'))
