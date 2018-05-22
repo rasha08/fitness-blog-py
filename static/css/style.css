@@ -965,3 +965,48 @@ input, textarea {
     margin-left: -30px;
   }
 }
+@media screen and (max-width: 420px) {
+  #app > div > div > div > div:nth-child(2) > .left {
+   height: 0vh;
+   width: 110vw;
+   position: fixed;
+   bottom: 10px;
+   left: 0px;
+   background-color: rgba(42, 125, 79, .95);
+   overflow: hidden;
+   transition-property: height;
+   -moz-transition-property: height;
+   -o-transition-property: height;
+   -webkit-transition-property: height;
+   transition-timing-function: ease-in;
+   -moz-transition-timing-function: ease-in;
+   -o-transition-timing-function: ease-in;
+   -webkit-transition-timing-function: ease-in;
+   transition-duration: 300ms;
+   -moz-transition-duration: 300ms;
+   -o-transition-duration: 300ms;
+   -webkit-transition-duration: 300ms;
+  }
+
+  #app > div > div > div > div:nth-child(2) > .left.open {
+    height: 80vh;
+  }
+
+  #app > div > div > div > div:nth-child(2) > .left li:first-child {
+    padding-top: 5vh;
+    display: none;
+    margin-left: -10px;
+  }
+
+  #app > div > div > div > div:nth-child(2) > .left li {
+    padding-top: 4vh;
+    margin-left: -20px;
+    box-shadow: 0.5px 0.5px 0.2px 0.1px snow;
+    padding-bottom: 4vh
+  }
+
+  .category-title h2{
+    width: 80vw !important;
+    margin-left: 15px !important;
+  }
+}

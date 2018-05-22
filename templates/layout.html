@@ -20,7 +20,7 @@
                 <div class="row nav-wrapper">
                     <div class="heading row">
                         <ul class="left hide-on-med-and-up col s2 center-align">
-                            <button class="btn btn-floating btn-large go-down">
+                            <button class="btn btn-floating btn-large go-down" onclick="toggleNavigationMenu()">
                                 <i class="material-icons">menu</i>
                             </button>
                         </ul>
@@ -36,7 +36,7 @@
                         <hr class="left hide-on-med-and-up col s12 center-align">
                     </div>
                     <div class="row">
-                        <ul class="left hide-on-small-and-down col s12">
+                        <ul class="left col s12" id="navigation">
                             <li class="col l2 m2 s12 hide-on-med-and-up">
                                 <a>MENI</a>
                             </li>
@@ -102,5 +102,13 @@
         $('.collapsible').collapsible();
         setTimeout(() => $('.gallery').addClass('ready'), 100)
     });
+
+    function toggleNavigationMenu() {
+       if ( $('#navigation').hasClass('open') ) {
+          $('#navigation').removeClass('open')
+       } else {
+          $('#navigation').addClass('open')
+       }
+    }
 </script>
 </html>
