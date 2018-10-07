@@ -26,7 +26,7 @@ def getAllPosts():
     global breakfastPosts
     global lunchPosts
     global dinnerPosts
-
+    global dessertPosts
 
     allCookPosts = []
     allBlogPosts = []
@@ -36,6 +36,7 @@ def getAllPosts():
     breakfastPosts = []
     lunchPosts = []
     dinnerPosts = []
+    dessertPosts = []
 
     blogPosts = database.child('blogPosts').get()
     cookPosts = database.child('cookPosts').get()
@@ -53,6 +54,7 @@ def getAllPosts():
     breakfastPosts = filterArrayByKey(allCookPosts, 'category', 'doručak')
     lunchPosts = filterArrayByKey(allCookPosts, 'category', 'ručak')
     dinnerPosts = filterArrayByKey(allCookPosts, 'category', 'večera')
+    dessertPosts = filterArrayByKey(allCookPosts, 'category', 'dezert')
 
 def getAllBlogPosts():
     return allBlogPosts
@@ -110,6 +112,8 @@ def getCategoryPosts(baseUrl, categoryUrl):
         posts = lunchPosts
     elif categoryUrl == 'najbolji-recepti-za-fitnes-veceru':
         posts = dinnerPosts
+    elif categoryUrl == 'najbolji-recepti-za-fitnes-dezert':
+        posts = dessertPosts
     else:
         return None
 
@@ -142,9 +146,14 @@ def getCookPagePosts():
             'link': '/fitnes-kuvar-zdrava-hrana-recepti/najbolji-recepti-za-fitnes-rucak'
         },
         'dinnerPosts': {
-            'title': 'Najbolji Recepti Za Vašu Fitnes večeru',
+            'title': 'Najbolji Recepti Za Vašu Fitnes Večeru',
             'posts': dinnerPosts[:4],
             'link': '/fitnes-kuvar-zdrava-hrana-recepti/najbolji-recepti-za-fitnes-veceru'
+        },
+        'dessertPosts': {
+            'title': 'Najbolji Recepti Za Vašu Fitnes Dezert',
+            'posts': dessertPosts[:4],
+            'link': '/fitnes-kuvar-zdrava-hrana-recepti/najbolji-recepti-za-fitnes-dezert'
         }
     }
 
@@ -161,6 +170,10 @@ def getCookPageSidebar():
         'dinnerPosts': {
             'title': 'VEČERA',
             'posts': dinnerPosts
+        },
+        'dessertPosts': {
+            'title': 'DEZERT',
+            'posts': dessertPosts
         }
     }
 
@@ -169,6 +182,8 @@ def getSingleCookPost(categoryUrlSlug, postNameUrlSlug):
         posts = breakfastPosts
     elif categoryUrlSlug == 'najbolji-recepti-za-fitnes-rucak':
         posts = lunchPosts
+    elif categoryUrlSlug == 'najbolji-recepti-za-fitnes-dezert':
+        posts = dessertPosts
     else:
         posts = dinnerPosts
 

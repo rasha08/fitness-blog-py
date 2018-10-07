@@ -98,8 +98,8 @@ def getBlogCategoryPageMetaTags(url, category):
 
 def getCookCategoryPageMetaTags(url, category):
   return {
-		'title': 'Fitness Blog Za Zene - Personalni Trener Jelena Stevanovic - Licni Trener Novi Sad',
-		'description': 'Najnoviji tesktovi i odgovori na pitanja: kako napredovati u terertani, kako brzo smrsati, dijete za ravan stomak, lako do trbusnjaka, zatezanje zadnjicem, kako se resiti celulita.',
+		'title': category['title'],
+		'description': category['description'],
 		'url': baseUrl + url,
 		'image': imageUrl,
 		'keywords': generateKewordsForPage(category['posts'])
@@ -168,6 +168,11 @@ def addSeoEntitiesForCategory(baseUrl, category, posts):
         categoryWithSeoEntities = {
             'title': 'Fitnes Kuvar Za Žene -Najbolji Recepti Za Vašu Fitnes Večeru',
             'description': 'Najbolji recepti za vašu fitnes večeru, kako da brzo i lako napravite sjajnu i zdravu večeru koja će omogućiti vašem telu odmor koji mu je potreban'
+        }
+    elif category == 'najbolji-recepti-za-fitnes-dezert':
+        categoryWithSeoEntities = {
+            'title': 'Fitnes Kuvar Za Žene -Najbolji Recepti Za Vaš Fitnes Dezert',
+            'description': 'Najbolji recepti za vaš fitnes dezert, kako da brzo i jednostavno napravite ukusnu i zdravu poslasticu. Jedite slatko i mršavite uz sjajne fitness dezerte'
         }
 
     categoryWithSeoEntities['posts'] = posts

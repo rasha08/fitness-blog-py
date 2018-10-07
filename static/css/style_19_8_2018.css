@@ -473,6 +473,10 @@ a:visited {
   margin-top: 170px;
   width: 200px;
 }
+.blog .btn:nth-of-type(4) {
+  margin-top: 170px;
+  width: 200px;
+}
 .blog-post {
   margin-top: calc(60px + 4.7vw);
   text-align: center;
@@ -959,7 +963,7 @@ input, textarea {
     background-size: cover;
     background-position-x: 60%;
   }
-}
+
 @media screen and (max-width: 1280px) and (min-width: 900px) {
   .image-wrapper {
     margin-left: -30px;
